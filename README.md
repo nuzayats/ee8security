@@ -23,7 +23,7 @@ In this case, the user has to supply their TOTP as well:
 
     {"email": "john.doe@example.com", "password": "john.doe.pw", "totp": "123456"}
 
-[The shared key for the account above can be found here](https://github.com/nuzayats/ee8security/blob/851489fc47069b4846dcb5e2532dd58819db6488/src/main/java/ee8security/MockUserService.java#L25) . Put the key into Google Authenticator's "Manual entry" screen and you can get a TOTP.
+[The shared key for the account above can be found here](https://github.com/nuzayats/ee8security/blob/master/src/main/java/ee8security/MockUserService.java#L24) . Put the key (the parameter for the `base32ToKey` method) into Google Authenticator's "Manual entry" screen and you can get a TOTP.
 
 ### /api/secured/greet:
 
