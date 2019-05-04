@@ -21,8 +21,7 @@ public class MockUserService implements UserService {
         USER_PASSWORD_MAP = Collections.unmodifiableMap(m);
     }
 
-    // VisibleForTesting
-    static Key JOHN_SHARED_KEY_FOR_TOTP = base32ToKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+    private static final Key JOHN_SHARED_KEY_FOR_TOTP = base32ToKey("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 
     private static final Map<String, Key> USER_KEY_MAP;
 
