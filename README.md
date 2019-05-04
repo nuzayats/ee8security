@@ -1,7 +1,7 @@
 ee8security
 ===========
 
-This is an experimental implementation which aims to study how to use Java EE 8 Security API (JSR 375) for situations where there are REST API clients, a token and TOTP (time-based one time password) based authorization is needed.
+This is an experimental implementation which aims to study how to use Java EE 8 Security API (JSR 375) for situations where there are REST API clients, a token and TOTP (time-based one time password) based authentication is needed.
 
 There are two endpoints:
 
