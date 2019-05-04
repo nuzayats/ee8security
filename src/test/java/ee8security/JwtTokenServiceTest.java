@@ -36,9 +36,9 @@ public class JwtTokenServiceTest {
 
     @Test
     public void invalid() {
-        String temperedToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYXIiLCJleHAiOjE1NTY3MTM4MDB9.3_ByeOWIpZUtTSpH8JTGWG7nMMLrKPa1hEPdfxz9pPg";
+        String tampered = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYXIiLCJleHAiOjE1NTY3MTM4MDB9.3_ByeOWIpZUtTSpH8JTGWG7nMMLrKPa1hEPdfxz9pPg";
 
-        Optional<String> result = sut.verifyAndGetSubject(temperedToken);
+        Optional<String> result = sut.verifyAndGetSubject(tampered);
 
         assertFalse(result.isPresent());
     }

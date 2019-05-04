@@ -18,6 +18,7 @@ public class UsernamePasswordIdentityStore implements IdentityStore {
         this.userService = userService;
     }
 
+    @SuppressWarnings("unused")
     public CredentialValidationResult validate(UsernamePasswordCredential credential) {
         if (userService.isTotpEnabled(credential.getCaller())) {
             return CredentialValidationResult.NOT_VALIDATED_RESULT;
