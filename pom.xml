@@ -108,9 +108,8 @@
                     </container>
                     <configuration>
                         <properties>
-                            <!-- For E2E testing -->
-                            <cargo.start.jvmargs>-Dee8security.fixedUnixTime=1556712000</cargo.start.jvmargs>
-<!--                            <cargo.port.offset>10000</cargo.port.offset>-->
+                            <cargo.start.jvmargs>${wildfly.jvmargs}</cargo.start.jvmargs>
+                            <!--                            <cargo.port.offset>10000</cargo.port.offset>-->
                         </properties>
                     </configuration>
                 </configuration>
@@ -147,4 +146,17 @@
             </plugin>
         </plugins>
     </build>
+
+    <profiles>
+        <profile>
+            <id>useFixedUnixTime</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <!-- For E2E testing -->
+                <wildfly.jvmargs>-Dee8security.fixedUnixTime=1556712000</wildfly.jvmargs>
+            </properties>
+        </profile>
+    </profiles>
 </project>
