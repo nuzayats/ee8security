@@ -37,8 +37,11 @@ If everything is fine, the user gets a greeting as follows:
 
 Tested on WildFly 16.
 
-The project contains some E2E test cases which can be run with the following command:
+The project contains [some E2E test cases](https://github.com/nuzayats/ee8security/tree/master/src/test/java/ee8security) which can be run with the following command:
 
     ./mvnw clean verify
 
-Note that it will automatically download and extract the WildFly 16 zip file which is about 173MB, so it will take some bandwidth and time.
+Note that:
+
+* It will automatically download and extract the WildFly 16 zip file which is about 173MB, so it will take some bandwidth and time
+* It will listen 8080, 8443 and 9990 ports so make sure those are not used
