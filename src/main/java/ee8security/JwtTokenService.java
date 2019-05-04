@@ -1,18 +1,23 @@
 package ee8security;
 
 import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.MalformedJwtException;
 import io.jsonwebtoken.security.SignatureException;
 
 import javax.crypto.SecretKey;
 import javax.inject.Inject;
 import java.util.Optional;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
-class BearerHandler {
+class JwtTokenService {
+
+    private static final Logger log = Logger.getLogger(JwtTokenService.class.getName());
 
     private final SecretKey secretKey;
 
     @Inject
-    BearerHandler(SecretKey secretKey) {
+    JwtTokenService(SecretKey secretKey) {
         this.secretKey = secretKey;
     }
 
@@ -23,7 +28,7 @@ class BearerHandler {
                 .compact();
     }
 
-    Optional<String> getSubject(String token) {
+    Optional<String> verifyAndGetSubject(String token) {
         try {
             return Optional.of(Jwts
                     .parser()
@@ -31,7 +36,8 @@ class BearerHandler {
                     .parseClaimsJws(token)
                     .getBody()
                     .getSubject());
-        } catch (SignatureException e) {
+        } catch (SignatureException | MalformedJwtException e) {
+            log.log(Level.FINE, "error during parsing a token", e);
             return Optional.empty();
         }
     }

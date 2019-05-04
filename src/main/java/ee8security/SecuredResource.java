@@ -10,7 +10,7 @@ import javax.ws.rs.core.SecurityContext;
 public class SecuredResource {
 
     @GET
-    @Path("/ping")
+    @Path("/greet")
     public Response ping(@Context SecurityContext securityContext) {
         return Response.ok().entity("Hello " + securityContext.getUserPrincipal().getName()).build();
     }

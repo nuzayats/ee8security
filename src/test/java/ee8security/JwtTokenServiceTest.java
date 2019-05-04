@@ -9,10 +9,10 @@ import java.util.Optional;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 
-public class BearerHandlerTest {
+public class JwtTokenServiceTest {
 
-    private final BearerHandler sut
-            = new BearerHandler(Keys.hmacShaKeyFor("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".getBytes(Charset.forName("UTF-8"))));
+    private final JwtTokenService sut
+            = new JwtTokenService(Keys.hmacShaKeyFor("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".getBytes(Charset.forName("UTF-8"))));
 
     @Test
     public void create() {
@@ -25,7 +25,7 @@ public class BearerHandlerTest {
     public void valid() {
         String validToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJmb28ifQ.i5Uh9hqaKyNzjgjxOFkF3DHP_pcsZ6UsZYMNbLYRj1A";
 
-        Optional<String> s = sut.getSubject(validToken);
+        Optional<String> s = sut.verifyAndGetSubject(validToken);
 
         assertEquals("foo", s.get());
     }
@@ -34,7 +34,7 @@ public class BearerHandlerTest {
     public void invalid() {
         String temperedToken = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJiYXIifQ.i5Uh9hqaKyNzjgjxOFkF3DHP_pcsZ6UsZYMNbLYRj1A";
 
-        Optional<String> result = sut.getSubject(temperedToken);
+        Optional<String> result = sut.verifyAndGetSubject(temperedToken);
 
         assertFalse(result.isPresent());
     }
