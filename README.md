@@ -35,7 +35,13 @@ If everything is fine, the user gets a greeting as follows:
 
     Hello jane.doe@example.com
 
-Tested on WildFly 16.
+## How to run
+
+This app is tested on WildFly 16.
+
+This app can be run with the following command:
+
+    ./mvnw cargo:run -P-useFixedUnixTime
 
 The project contains [some E2E test cases](https://github.com/nuzayats/ee8security/tree/master/src/test/java/ee8security) which can be run with the following command:
 
