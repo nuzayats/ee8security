@@ -11,6 +11,9 @@ import java.io.IOException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Note that to use these tests, the application must run with the system property -Dee8security.fixedUnixTime=1556712000
+ */
 public class GreetIT {
 
     @Test

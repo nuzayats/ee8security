@@ -13,6 +13,9 @@ import java.security.InvalidKeyException;
 import static org.hamcrest.core.Is.is;
 import static org.junit.Assert.assertThat;
 
+/**
+ * Note that to use these tests, the application must run with the system property -Dee8security.fixedUnixTime=1556712000
+ */
 public class CreateTokenIT {
 
     private static final String ENDPOINT = "http://localhost:8080/ee8security/api/non-secured/create-token";
