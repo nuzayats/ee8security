@@ -8,7 +8,7 @@ import javax.enterprise.inject.Produces;
 import java.nio.charset.Charset;
 
 @ApplicationScoped
-public class SecretKeyProvider {
+public class SecretKeyProducer {
 
     @Produces
     SecretKey secretKey() {

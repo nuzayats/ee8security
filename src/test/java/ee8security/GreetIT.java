@@ -42,6 +42,4 @@ public class GreetIT {
         assertThat(EntityUtils.toString(response.getEntity()), is("Hello jane.doe@example.com"));
         assertThat(response.getStatusLine().getStatusCode(), is(200));
     }
-
-
 }

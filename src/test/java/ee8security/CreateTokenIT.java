@@ -25,8 +25,7 @@ public class CreateTokenIT {
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-        String payload = EntityUtils.toString(response.getEntity());
-        assertThat(payload, is("{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLmRvZUBleGFtcGxlLmNvbSJ9.oLhIIqa_XN83EfQOT8oBcCc75LCDKjLzJ-EN7M18Vbs\"}"));
+        assertThat(EntityUtils.toString(response.getEntity()), is("{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLmRvZUBleGFtcGxlLmNvbSIsImV4cCI6MTU1NjcxMzgwMH0.SABuKUbnMwFXVbOVy4RkJ1aAM4Q6RU37XRXoiS9EYA0\"}"));
     }
 
     @Test
@@ -55,20 +54,18 @@ public class CreateTokenIT {
 
     @Test
     public void returnsTokenIfValidTotpIsGiven() throws IOException, InvalidKeyException {
-        // TODO: this test case might fail due to latency; Somehow any way to fix current timestamp is needed
-        String totp = new TotpService().create(MockUserService.JOHN_SHARED_KEY_FOR_TOTP);
         HttpPost request = new HttpPost(ENDPOINT);
-        request.setEntity(new StringEntity("{\"email\": \"john.doe@example.com\", \"password\": \"john.doe.pw\", \"totp\": \"" + totp + "\"}"));
+        request.setEntity(new StringEntity("{\"email\": \"john.doe@example.com\", \"password\": \"john.doe.pw\", \"totp\": \"879955\"}"));
         request.setHeader("Content-type", "application/json");
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
-        assertThat(EntityUtils.toString(response.getEntity()), is("{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSJ9.g7j0rDvlyVk7ZLZD4ZOE84zVakGs6uXtT9u2YHM26FM\"}"));
+        assertThat(EntityUtils.toString(response.getEntity()), is("{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSIsImV4cCI6MTU1NjcxMzgwMH0.ei11yP0Ki94lKfP-7-YLa_GyPTVeooWieZgZKgd1mCQ\"}"));
         assertThat(response.getStatusLine().getStatusCode(), is(200));
     }
 
     @Test
-    public void returnsErrorIfTotpIsInvalid() throws IOException, InvalidKeyException {
+    public void returnsErrorIfTotpIsInvalid() throws IOException {
         String totp = "123456";
         HttpPost request = new HttpPost(ENDPOINT);
         request.setEntity(new StringEntity("{\"email\": \"john.doe@example.com\", \"password\": \"john.doe.pw\", \"totp\": \"" + totp + "\"}"));

@@ -106,11 +106,13 @@
                             <url>https://download.jboss.org/wildfly/16.0.0.Final/wildfly-16.0.0.Final.zip</url>
                         </zipUrlInstaller>
                     </container>
-<!--                    <configuration>-->
-<!--                        <properties>-->
+                    <configuration>
+                        <properties>
+                            <!-- For E2E testing -->
+                            <cargo.start.jvmargs>-Dee8security.fixedUnixTime=1556712000</cargo.start.jvmargs>
 <!--                            <cargo.port.offset>10000</cargo.port.offset>-->
-<!--                        </properties>-->
-<!--                    </configuration>-->
+                        </properties>
+                    </configuration>
                 </configuration>
                 <executions>
                     <execution>
