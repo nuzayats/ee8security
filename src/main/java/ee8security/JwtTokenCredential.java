@@ -2,15 +2,15 @@ package ee8security;
 
 import javax.security.enterprise.credential.Credential;
 
-public class JwtTokenCredential implements Credential {
+class JwtTokenCredential implements Credential {
 
     private final String token;
 
-    public JwtTokenCredential(String token) {
+    JwtTokenCredential(String token) {
         this.token = token;
     }
 
-    public String getToken() {
+    String getToken() {
         return token;
     }
 }

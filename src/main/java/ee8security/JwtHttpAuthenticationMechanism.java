@@ -2,7 +2,6 @@ package ee8security;
 
 import javax.enterprise.context.ApplicationScoped;
 import javax.inject.Inject;
-import javax.security.enterprise.AuthenticationException;
 import javax.security.enterprise.AuthenticationStatus;
 import javax.security.enterprise.authentication.mechanism.http.HttpAuthenticationMechanism;
 import javax.security.enterprise.authentication.mechanism.http.HttpMessageContext;
@@ -25,7 +24,8 @@ public class JwtHttpAuthenticationMechanism implements HttpAuthenticationMechani
     private final IdentityStoreHandler identityStoreHandler;
 
     @Inject
-    JwtHttpAuthenticationMechanism(IdentityStoreHandler identityStoreHandler) {
+    JwtHttpAuthenticationMechanism(
+            @SuppressWarnings("CdiInjectionPointsInspection") IdentityStoreHandler identityStoreHandler) {
         this.identityStoreHandler = identityStoreHandler;
     }
 

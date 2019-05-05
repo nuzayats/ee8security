@@ -28,7 +28,7 @@ public class TotpService {
         this.clock = clock;
     }
 
-    public String create(Key key) throws InvalidKeyException {
+    String create(Key key) throws InvalidKeyException {
         int i = GENERATOR.generateOneTimePassword(key, new Date(clock.instant().toEpochMilli()));
         return String.format("%06d", i);
     }

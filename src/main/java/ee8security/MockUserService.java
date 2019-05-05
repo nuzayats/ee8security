@@ -63,7 +63,7 @@ public class MockUserService implements UserService {
         }
     }
 
-    private static Key base32ToKey(String base32) {
+    private static Key base32ToKey(@SuppressWarnings("SameParameterValue") String base32) {
         assert base32.length() == 32;
         byte[] b = new Base32().decode(base32);
         assert b.length == 20;

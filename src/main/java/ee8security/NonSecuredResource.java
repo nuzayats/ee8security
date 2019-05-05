@@ -22,6 +22,7 @@ public class NonSecuredResource {
 
     @Inject
     private JwtTokenService jwtTokenService;
+    @SuppressWarnings("CdiInjectionPointsInspection")
     @Inject
     private IdentityStoreHandler identityStoreHandler;
 
