@@ -28,14 +28,10 @@ public class UsernamePasswordTotpIdentityStore implements IdentityStore {
         UsernamePasswordTotpCredential credential = (UsernamePasswordTotpCredential) c;
 
         String username = credential.getUsernamePasswordCredential().getCaller();
-
-        if (!userService.isTotpValid(username, credential.getTotp())) {
-            return CredentialValidationResult.INVALID_RESULT;
-        }
-
         String password = credential.getUsernamePasswordCredential().getPasswordAsString();
+        String totp = credential.getTotp();
 
-        return userService.isUsernameAndPasswordValid(username, password)
+        return userService.isTotpValid(username, totp) && userService.isUsernameAndPasswordValid(username, password)
                 ? new CredentialValidationResult(username)
                 : CredentialValidationResult.INVALID_RESULT;
     }
