@@ -43,6 +43,11 @@ This app can be run with the following command:
 
     ./mvnw cargo:run -P-useFixedUnixTime
 
+Then you can hit an endpoint like this:
+
+    curl -d '{"email": "jane.doe@example.com", "password": "jane.doe.pw"}' -H "Content-Type: application/json" -X POST http://localhost:8080/ee8security/api/non-secured/create-token -i
+    curl -H "Authorization: Bearer PUT.THE.TOKEN.HERE" -i http://localhost:8080/ee8security/api/secured/greet
+
 The project contains [some E2E test cases](https://github.com/nuzayats/ee8security/tree/master/src/test/java/ee8security) which can be run with the following command:
 
     ./mvnw clean verify
