@@ -16,9 +16,11 @@ import static org.junit.Assert.assertThat;
  */
 public class GreetIT {
 
+    private static final String ENDPOINT = "http://localhost:8080/ee8security/api/secured/greet";
+
     @Test
     public void returnsUnauthorizedIfThereIsNoToken() throws IOException {
-        HttpGet request = new HttpGet("http://localhost:8080/ee8security/api/secured/greet");
+        HttpGet request = new HttpGet(ENDPOINT);
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
@@ -27,7 +29,7 @@ public class GreetIT {
 
     @Test
     public void returnsUnauthorizedIfInvalidTokenIsSupplied() throws IOException {
-        HttpGet request = new HttpGet("http://localhost:8080/ee8security/api/secured/greet");
+        HttpGet request = new HttpGet(ENDPOINT);
         request.addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqb2huLmRvZUBleGFtcGxlLmNvbSJ9.oLhIIqa_XN83EfQOT8oBcCc75LCDKjLzJ-EN7M18Vbs");
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
@@ -37,7 +39,7 @@ public class GreetIT {
 
     @Test
     public void saysHelloIfValidTokenIsSupplied() throws IOException {
-        HttpGet request = new HttpGet("http://localhost:8080/ee8security/api/secured/greet");
+        HttpGet request = new HttpGet(ENDPOINT);
         request.addHeader("Authorization", "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLmRvZUBleGFtcGxlLmNvbSJ9.oLhIIqa_XN83EfQOT8oBcCc75LCDKjLzJ-EN7M18Vbs");
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);

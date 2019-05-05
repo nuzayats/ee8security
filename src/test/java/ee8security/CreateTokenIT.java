@@ -29,6 +29,7 @@ public class CreateTokenIT {
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
         assertThat(EntityUtils.toString(response.getEntity()), is("{\"token\":\"eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJqYW5lLmRvZUBleGFtcGxlLmNvbSIsImV4cCI6MTU1NjcxMzgwMH0.SABuKUbnMwFXVbOVy4RkJ1aAM4Q6RU37XRXoiS9EYA0\"}"));
+        assertThat(response.getStatusLine().getStatusCode(), is(200));
     }
 
     @Test
