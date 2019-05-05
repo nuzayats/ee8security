@@ -29,7 +29,7 @@ public class ClockProducer {
     }
 
     @Produces
-    Clock produceInstant() {
+    Clock clock() {
         return CLOCK;
     }
 }
