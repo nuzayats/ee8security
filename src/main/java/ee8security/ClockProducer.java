@@ -6,7 +6,7 @@ import javax.enterprise.event.Observes;
 import javax.enterprise.inject.Produces;
 import java.time.Clock;
 import java.time.Instant;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -21,7 +21,7 @@ public class ClockProducer {
         String prop = System.getProperty("ee8security.fixedUnixTime");
         CLOCK = prop == null
                 ? Clock.systemUTC()
-                : Clock.fixed(Instant.ofEpochSecond(Long.parseLong(prop)), ZoneId.of("UTC"));
+                : Clock.fixed(Instant.ofEpochSecond(Long.parseLong(prop)), ZoneOffset.UTC);
     }
 
     public void postConstruct(@Observes @Initialized(ApplicationScoped.class) Object o) {

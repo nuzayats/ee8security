@@ -6,7 +6,7 @@ import org.junit.Test;
 import java.nio.charset.Charset;
 import java.time.Clock;
 import java.time.Instant;
-import java.time.ZoneId;
+import java.time.ZoneOffset;
 import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
@@ -16,7 +16,7 @@ public class JwtTokenServiceTest {
 
     private final JwtTokenService sut = new JwtTokenService(
             Keys.hmacShaKeyFor("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx".getBytes(Charset.forName("UTF-8"))),
-            Clock.fixed(Instant.ofEpochSecond(1556712000L), ZoneId.of("UTC")));
+            Clock.fixed(Instant.ofEpochSecond(1556712000L), ZoneOffset.UTC));
 
     @Test
     public void create() {
