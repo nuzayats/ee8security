@@ -32,7 +32,8 @@ public class JwtHttpAuthenticationMechanism implements HttpAuthenticationMechani
     @Override
     public AuthenticationStatus validateRequest(
             HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) {
-        if (!request.getPathInfo().startsWith("/secured/")) {
+        String pathInfo = request.getPathInfo();
+        if (pathInfo == null || !pathInfo.startsWith("/secured/")) {
             return httpMessageContext.doNothing();
         }
 
