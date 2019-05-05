@@ -62,7 +62,7 @@ public class NonSecuredResource {
         return Response.ok().entity(output).build();
     }
 
-    private Credential toCredential(String email, String password, String totp) {
+    private static Credential toCredential(String email, String password, String totp) {
         return new UsernamePasswordTotpCredential(toCredential(email, password), totp);
     }
 
