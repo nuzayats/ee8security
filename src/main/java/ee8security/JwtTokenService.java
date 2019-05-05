@@ -46,6 +46,9 @@ class JwtTokenService {
                     .getBody()
                     .getSubject());
         } catch (SignatureException | MalformedJwtException | ExpiredJwtException e) {
+            log.log(Level.INFO,
+                    "Token verification failed. The offending token: \"{0}\"; Reason: {1}",
+                    new Object[]{token, e.getMessage()});
             log.log(Level.FINE, "error during parsing a token", e);
             return Optional.empty();
         }
