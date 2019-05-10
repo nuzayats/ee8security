@@ -31,7 +31,7 @@ public class JwtTokenIdentityStore implements IdentityStore {
         JwtTokenCredential credential = (JwtTokenCredential) c;
 
         return jwtTokenService.verifyAndGetSubject(credential.getToken())
-                .map(CredentialValidationResult::new)
+                .map(caller -> new CredentialValidationResult(caller, Collections.singleton("USER")))
                 .orElse(INVALID_RESULT);
     }
 

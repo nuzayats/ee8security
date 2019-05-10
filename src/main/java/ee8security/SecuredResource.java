@@ -1,5 +1,6 @@
 package ee8security;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.security.enterprise.SecurityContext;
 import javax.ws.rs.GET;
@@ -17,8 +18,9 @@ public class SecuredResource {
 
     @GET
     @Path("/greet")
+    @RolesAllowed({"USER"})
     @Produces(MediaType.TEXT_PLAIN)
-    public Response ping() {
+    public Response greet() {
         return Response.ok().entity("Hello " + securityContext.getCallerPrincipal().getName()).build();
     }
 }

@@ -32,11 +32,6 @@ public class JwtHttpAuthenticationMechanism implements HttpAuthenticationMechani
     @Override
     public AuthenticationStatus validateRequest(
             HttpServletRequest request, HttpServletResponse response, HttpMessageContext httpMessageContext) {
-        String pathInfo = request.getPathInfo();
-        if (pathInfo == null || !pathInfo.startsWith("/secured/")) {
-            return httpMessageContext.doNothing();
-        }
-
         Optional<String> bearer = getBearer(request);
 
         if (bearer.isPresent()) {
@@ -46,7 +41,7 @@ public class JwtHttpAuthenticationMechanism implements HttpAuthenticationMechani
             }
         }
 
-        return httpMessageContext.responseUnauthorized();
+        return httpMessageContext.doNothing();
     }
 
     private static Optional<String> getBearer(HttpServletRequest request) {
