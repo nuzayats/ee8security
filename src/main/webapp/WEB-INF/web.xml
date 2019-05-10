@@ -10,10 +10,13 @@
     <security-constraint>
         <web-resource-collection>
             <web-resource-name>ee8security</web-resource-name>
-            <url-pattern>/*</url-pattern>
+            <url-pattern>/api/secured/*</url-pattern>
         </web-resource-collection>
+        <auth-constraint>
+            <role-name>USER</role-name>
+        </auth-constraint>
     </security-constraint>
     <security-role>
-        <role-name>user</role-name>
+        <role-name>USER</role-name>
     </security-role>
 </web-app>
