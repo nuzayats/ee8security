@@ -24,6 +24,7 @@ public class GreetIT {
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
+        // fail. it gets 200
         assertThat(response.getStatusLine().getStatusCode(), is(401));
     }
 
@@ -34,6 +35,7 @@ public class GreetIT {
 
         HttpResponse response = HttpClientBuilder.create().build().execute(request);
 
+        // fail. it gets 200
         assertThat(response.getStatusLine().getStatusCode(), is(401));
     }
 
